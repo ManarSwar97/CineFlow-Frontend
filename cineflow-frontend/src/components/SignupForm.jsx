@@ -14,17 +14,19 @@ const SignupForm = () =>{
 
     const handleSignup = (e) =>{
         e.preventDefault();
-        if(password != confirmPassword){
+        if(password !== confirmPassword){
             setError("Password and confirm password does not match!");
-            alert("Password and confirm password does not match!");
             return;
         }
-        signup(firstName, lastName, email, password)
+        else{
+        signup(firstName, lastName, email, password, confirmPassword)
         .then(res=>{
             localStorage.setItem("token", res.data.token);
             alert("Signup success");
         })
         .catch(()=>alert("Invalid values"))
+        }
+
     }
 
     return (
@@ -48,15 +50,22 @@ const SignupForm = () =>{
                     <label>Password</label>
                     <input type="password" onChange={e=>setPassword(e.target.value)}/>
                 </div>
+
                 <div className="form-input">
                     <label>Confirm Password</label>
-                    <input type="password" />
+                <input 
+                    type="password"
+                    onChange={e => {
+                        setConfirmPassword(e.target.value);
+                        setError("");
+                    }}
+                />
                 </div>
+                {error && <p className="error-msg">{error}</p>}
 
                 <div className="submit-button">
                     <button type="submit">Signup</button>
                 </div>
-
             </form>
 
         </div>

@@ -105,3 +105,10 @@ button:hover{
 .account-link{
     color: rgba(255,0,70,0.5);
 }
+
+.error-msg{
+    color:#ff4d6d;
+    font-size:13px;
+    margin-top:5px;
+    text-align:left;
+}

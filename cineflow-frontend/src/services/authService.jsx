@@ -7,6 +7,6 @@ export const login = (email, password) =>{
 
 }
 
-export const signup = (firstName, lastName, email, password) =>{
-    return axios.post(`${API_URL}/signup`, {firstName, lastName, email, password});
+export const signup = (firstName, lastName, email, password, confirmPassword) =>{
+    return axios.post(`${API_URL}/signup`, {firstName, lastName, email, password, confirmPassword});
 }
