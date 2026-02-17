@@ -1,27 +1,52 @@
 import "./SignupForm.css";
+import { useState } from "react";
+import { signup } from "../services/authService";
+
 
 const SignupForm = () =>{
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [error, setError] = useState("");
+
+    const handleSignup = (e) =>{
+        e.preventDefault();
+        if(password != confirmPassword){
+            setError("Password and confirm password does not match!");
+            alert("Password and confirm password does not match!");
+            return;
+        }
+        signup(firstName, lastName, email, password)
+        .then(res=>{
+            localStorage.setItem("token", res.data.token);
+            alert("Signup success");
+        })
+        .catch(()=>alert("Invalid values"))
+    }
 
     return (
         <div className="glass-container">
             <h2>Create an Account</h2>
 
-            <form method="POST" action="">
+            <form onSubmit={handleSignup}>
                 <div className="form-input">
                     <label>First Name</label>
-                    <input type="text" />
+                    <input type="text" onChange={e=>setFirstName(e.target.value)}/>
                 </div>
                 <div className="form-input">
                     <label>Last Name</label>
-                    <input type="text" />
+                    <input type="text" onChange={e=>setLastName(e.target.value)}/>
                 </div>
                 <div className="form-input">
                     <label>Email Address</label>
-                    <input type="email" />
+                    <input type="email" onChange={e=>setEmail(e.target.value)}/>
                 </div>
                 <div className="form-input">
                     <label>Password</label>
-                    <input type="password" />
+                    <input type="password" onChange={e=>setPassword(e.target.value)}/>
                 </div>
                 <div className="form-input">
                     <label>Confirm Password</label>
@@ -29,7 +54,7 @@ const SignupForm = () =>{
                 </div>
 
                 <div className="submit-button">
-                    <input type="submit" value="Signup"/>
+                    <button type="submit">Signup</button>
                 </div>
 
             </form>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+
 *{
     margin:0;
     padding:0;
@@ -41,8 +44,9 @@ body{
 
 .glass-container h2{
     text-align:center;
-    font-size:26px;
-    margin-bottom:10px;
+    font-size:30px;
+    font-family:'Montserrat', sans-serif;
+    letter-spacing:0.5px;
 }
 
 form{
@@ -78,9 +82,9 @@ input:focus{
     background:rgba(255,255,255,0.12);
 }
 
-.submit-button input{
+button{
     margin-top:10px;
-    padding:15px 185px;
+    padding:15px 180px;
     border-radius:12px;
     border:none;
     background:linear-gradient(90deg,#ff004c,#ff5f5f);
@@ -90,10 +94,10 @@ input:focus{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 18px;
 }
 
-.submit-button input:hover{
+button:hover{
     transform:translateY(-2px);
     box-shadow:0 5px 15px rgba(255,0,70,0.5);
 }
