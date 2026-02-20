@@ -1,12 +1,13 @@
 import "./LoginForm.css";
 import { useState } from "react";
 import { login } from "../services/authService";
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    let navigate = useNavigate();
 
     const handleLogin = (e) =>{
         e.preventDefault();
@@ -14,6 +15,7 @@ const LoginForm = () => {
         .then(res=>{
             localStorage.setItem("token", res.data.token);
             alert("Login success");
+            navigate("/main");
         })
         .catch(()=>alert("Invalid credentials"));
     }

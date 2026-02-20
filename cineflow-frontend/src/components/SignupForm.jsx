@@ -1,10 +1,10 @@
 import "./SignupForm.css";
 import { useState } from "react";
 import { signup } from "../services/authService";
-
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () =>{
-
+    let navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -23,6 +23,7 @@ const SignupForm = () =>{
         .then(res=>{
             localStorage.setItem("token", res.data.token);
             alert("Signup success");
+            navigate("/signin")
         })
         .catch(()=>alert("Invalid values"))
         }
